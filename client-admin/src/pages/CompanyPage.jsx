@@ -19,8 +19,6 @@ const CompanyPage = () => {
         dispatch(fetchCompanies())
     }, [])
 
-    console.log("ini dari company page", data);
-
     if (isLoading) return <CustomLoader />
 
     return (

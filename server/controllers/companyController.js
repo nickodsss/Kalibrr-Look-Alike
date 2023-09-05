@@ -12,7 +12,6 @@ class CompanyController {
 
             response.status(201).json(createdCompany)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -22,14 +21,12 @@ class CompanyController {
             const result = await Company.findAll()
             response.status(200).json(result)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
 
     static async readCompanyDetail(request, response, next) {
         try {
-            console.log('masuk sini')
             const { id } = request.params
             const result = await Company.findOne({
                 where: {
@@ -41,7 +38,6 @@ class CompanyController {
             }
             response.status(200).json(result)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -66,7 +62,6 @@ class CompanyController {
             }
             response.status(201).json(` Data with id ${id} is succeed to edit `)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -80,7 +75,6 @@ class CompanyController {
                     id
                 }
             })
-            // console.log (result)
 
             if (!result) {
                 throw { name: 'ErrorDelete' }
@@ -90,7 +84,6 @@ class CompanyController {
                 message: `Data with id ${id} success to delete`
             })
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }

@@ -19,7 +19,6 @@ const RegisterPage = () => {
     });
 
     const allInputHandler = (event) => {
-        // console.log(event.target.value)
         setFormRegister({
             ...formRegister,
             [event.target.name]: event.target.value

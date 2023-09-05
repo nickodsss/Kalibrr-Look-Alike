@@ -10,7 +10,6 @@ const DetailPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { id } = useParams();
-    // console.log(id)
     const data = useSelector((state) => state.job?.jobDetail)
     const isLoading = useSelector((state) => state.job?.isLoading)
 
@@ -21,8 +20,6 @@ const DetailPage = () => {
     useEffect(() => {
         dispatch(fetchCompanies())
     }, [])
-
-    // console.log(data?.result?.id, '<< ini data di detail page')
 
     if (isLoading) return <CustomLoader />
 

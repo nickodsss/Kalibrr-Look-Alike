@@ -17,7 +17,6 @@ const LoginPage = () => {
     });
 
     const allInputHandler = (event) => {
-        // console.log(event.target.value)
         setFormLogin({
             ...formLogin,
             [event.target.name]: event.target.value

@@ -12,9 +12,6 @@ const FormCompany = () => {
     const isLoading = useSelector((state) => state?.company?.isLoading)
     const companyDetail = useSelector((state) => state?.company?.companyDetail)
     const { id } = useParams()
-    console.log(id, "<< ini di form company")
-
-    // console.log(companyDetail, "<< ini company detail")
 
     const [isFormValid, setFormValid] = useState(true)
 

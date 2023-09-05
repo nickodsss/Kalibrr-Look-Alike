@@ -7,15 +7,12 @@ import { useParams } from 'react-router-dom'
 const DetailPage = () => {
     const dispatch = useDispatch()
     const { id } = useParams();
-    // console.log(id)
     const data = useSelector((state) => state.job?.jobDetail)
     const isLoading = useSelector((state) => state.job?.isLoading)
 
     useEffect(() => {
         dispatch(fetchJobById(id))
     }, [])
-
-    console.log(data?.resultSkill, '<< ini data di detail page')
 
     if (isLoading) return <CustomLoader />
 

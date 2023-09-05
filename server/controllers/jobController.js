@@ -6,10 +6,7 @@ class JobController {
     static async createJob(request, response, next) {
         const trx = await sequelize.transaction()
         try {
-            // console.log("masuk sini")
             const { title, description, companyId, jobType, name1, level1, name2, level2, name3, level3 } = request.body
-            console.log(title, description, companyId, jobType, name1, level1, name2, level2, name3, level3)
-
 
             if (!name1 || !level1) {
                 throw { name: 'Minimum add 3 skills' }
@@ -28,8 +25,6 @@ class JobController {
                 authorId: request.additionalData.userId,
                 jobType
             }, { transaction: trx })
-
-            console.log(createdJobs)
 
             const createdSkill = await Skill.bulkCreate([
                 {
@@ -57,7 +52,6 @@ class JobController {
 
         } catch (err) {
             await trx.rollback()
-            console.log(err)
             next(err)
         }
     }
@@ -72,7 +66,6 @@ class JobController {
             )
             response.status(200).json(result)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -80,7 +73,6 @@ class JobController {
     static async readJobDetail(request, response, next) {
         const trx = await sequelize.transaction()
         try {
-            console.log('masuk sini')
             const { id } = request.params
             const result = await Job.findOne({
                 include: [Company, User],
@@ -90,14 +82,12 @@ class JobController {
                 transaction: trx
             })
 
-            // console.log(id)
             const resultSkill = await Skill.findAll({
                 where: {
                     jobId: id
                 },
                 transaction: trx
             })
-            console.log(result)
             if (!result) {
                 throw { name: 'ErrorData' }
             }
@@ -105,7 +95,6 @@ class JobController {
             response.status(200).json({ result, resultSkill })
         } catch (err) {
             await trx.rollback()
-            console.log(err)
             next(err)
         }
     }
@@ -124,14 +113,12 @@ class JobController {
                     id
                 }
             })
-            // console.log(editArticle)
             if (!editJob[0]) {
                 throw { name: 'ErrorEdit' }
             }
 
             response.status(201).json(` Data with id ${id} is succeed to edit `)
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -156,7 +143,6 @@ class JobController {
             })
         } catch (err) {
             await trx.rollback()
-            console.log(err)
             next(err)
         }
     }

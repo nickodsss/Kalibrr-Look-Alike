@@ -21,7 +21,6 @@ class UserController {
                 message: created
             })
         } catch (err) {
-            console.log(err)
             next(err)
         }
     }
@@ -51,7 +50,6 @@ class UserController {
             if (!isValidPassword) {
                 throw { name: 'Invalid' }
             }
-            console.log(isValidPassword)
 
             const token = createToken({
                 id: user.id,
@@ -59,8 +57,6 @@ class UserController {
                 email: user.email,
                 role: user.role
             })
-
-            // console.log(token)
 
             response.status(200).json({
                 access_token: token,

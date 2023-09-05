@@ -23,7 +23,6 @@ export const fetchJobs = () => {
             dispatch(fetchJobPending(true))
             const result = await fetch(`http://localhost:3000/jobs`)
             const responseJson = await result.json()
-            console.log(responseJson, '<< ini di action creator fetch jobs')
             dispatch(fetchJobSuccess(responseJson))
         } catch (err) {
             console.log(err)
@@ -37,11 +36,8 @@ export const fetchJobById = (id) => {
     return async (dispatch) => {
         try {
             dispatch(fetchJobPending(true))
-            // console.log(id, '<< ini di action creator')
             const result = await fetch(`http://localhost:3000/jobs/${id}`)
-            // console.log(result)
             const responseJson = await result.json()
-            // console.log(responseJson)
             dispatch(fetchJobDetail(responseJson))
         } catch (err) {
             console.log(err)

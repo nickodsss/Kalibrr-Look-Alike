@@ -14,8 +14,6 @@ const HomePage = () => {
     const data = useSelector((state) => state?.job?.jobs)
     const isLoading = useSelector((state) => state?.job?.isLoading)
 
-    console.log("ini dari homepage", data);
-
     useEffect(() => {
         dispatch(fetchJobs())
     }, [])

@@ -22,7 +22,6 @@ export const fetchJobs = () => {
             dispatch(fetchJobPending(true))
             const result = await fetch(`http://localhost:3000/jobs`)
             const responseJson = await result.json()
-            console.log(responseJson, '<< ini di action creator fetch jobs')
             dispatch(fetchJobSuccess(responseJson))
         } catch (err) {
             console.log(err)
@@ -35,16 +34,11 @@ export const fetchJobs = () => {
 export const fetchJobById = (id) => {
     return async (dispatch) => {
         try {
-            console.log('masuk sini abcde', id)
             dispatch(fetchJobPending(true))
-            // console.log(id, '<< ini di action creator')
             const result = await fetch(`http://localhost:3000/jobs/${id}`)
-            // console.log(result)
             const responseJson = await result.json()
-            console.log(responseJson, 'ini response json')
             dispatch(fetchJobDetail(responseJson))
         } catch (err) {
-            console.log('masuk error fetch job sini')
             console.log(err)
         } finally {
             dispatch(fetchJobPending(false))
@@ -56,7 +50,6 @@ export const deleteJob = (id) => {
     return async (dispatch) => {
         try {
             dispatch(fetchJobPending(true))
-            console.log(id, '<< ini di action creator')
             const response = await fetch(`http://localhost:3000/jobs/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -96,7 +89,6 @@ export const addJob = (job) => {
 export const updateJob = (id, job) => {
     return async (dispatch) => {
         try {
-            console.log(id, 'masuk sini edit')
             dispatch(fetchJobPending(true))
             await fetch(`http://localhost:3000/jobs/${id}`, {
                 method: 'PUT',
@@ -143,7 +135,6 @@ export const loginUser = (user) => {
 export const registerUser = (user) => {
     return async (dispatch) => {
         try {
-            console.log('masuk sini')
             const response = await fetch(`http://localhost:3000/register`, {
                 method: 'POST',
                 headers: {
@@ -179,7 +170,6 @@ export const fetchCompanyDetail = (payload) => ({
 export const fetchCompanies = () => {
     return async (dispatch) => {
         try {
-            console.log('masuk fetch companies')
             dispatch(fetchCompanyPending(true))
             const result = await fetch(`http://localhost:3000/companies`, {
                 headers: {
@@ -187,7 +177,6 @@ export const fetchCompanies = () => {
                 }
             })
             const responseJson = await result.json()
-            console.log(responseJson, '<< ini di action creator fetch companies')
             dispatch(fetchCompanySuccess(responseJson))
         } catch (err) {
             console.log(err)
@@ -200,20 +189,15 @@ export const fetchCompanies = () => {
 export const fetchCompaniesDetail = (id) => {
     return async (dispatch) => {
         try {
-            console.log(id, "ini di action creator")
             dispatch(fetchCompanyPending(true))
-            // console.log(id, '<< ini di action creator')
             const result = await fetch(`http://localhost:3000/companies/${id}`, {
                 headers: {
                     access_token: localStorage.getItem("access_token")
                 }
             })
-            // console.log(result)
             const responseJson = await result.json()
-            console.log(responseJson, "ini company detail di action creator")
             dispatch(fetchCompanyDetail(responseJson))
         } catch (err) {
-            console.log('masuk error sini')
             console.log(err)
         } finally {
             dispatch(fetchCompanyPending(false))
@@ -225,7 +209,6 @@ export const deleteCompany = (id) => {
     return async (dispatch) => {
         try {
             dispatch(fetchCompanyPending(true))
-            console.log(id, '<< ini di action creator')
             const response = await fetch(`http://localhost:3000/companies/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -265,7 +248,6 @@ export const addCompany = (company) => {
 export const updateCompany = (id, company) => {
     return async (dispatch) => {
         try {
-            console.log('masuk sini edit')
             dispatch(fetchCompanyPending(true))
             await fetch(`http://localhost:3000/companies/${id}`, {
                 method: 'PUT',

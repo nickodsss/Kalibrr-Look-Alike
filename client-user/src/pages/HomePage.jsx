@@ -10,14 +10,9 @@ const HomePage = () => {
     const data = useSelector((state) => state?.job?.jobs)
     const isLoading = useSelector((state) => state?.job?.isLoading)
 
-
-    console.log("ini dari homepage", data);
-
     useEffect(() => {
         dispatch(fetchJobs())
     }, [])
-
-    // console.log(isLoading, '<< ini di homepage')
 
     if (isLoading) return <CustomLoader />
 
@@ -41,7 +36,6 @@ const HomePage = () => {
                                 <Card key={el?.id} el={el} />
                             )
                         })}
-                        {/* Job Card*/}
                     </div>
                 </div>
             </main>

@@ -14,11 +14,6 @@ const FormJob = () => {
     const jobDetail = useSelector((state) => state?.job?.jobDetail)
     const { jobId } = useParams()
 
-    // console.log(jobDetail, "inni di form job line 17")
-
-    console.log(company, "ini companyy")
-
-
     useEffect(() => {
         dispatch(fetchCompanies())
     }, [dispatch])
@@ -46,7 +41,6 @@ const FormJob = () => {
     }
 
     const allInputHandler = (event) => {
-        console.log(event.target.name, event.target.value)
         setFormValue({
             ...formValue,
             [event.target.name]: event.target.value
@@ -80,7 +74,6 @@ const FormJob = () => {
             })
 
         } else {
-            console.log('masuk dispatch else')
             dispatch(addJob(formValue)).then(() => {
                 setFormValue({
                     title: "",

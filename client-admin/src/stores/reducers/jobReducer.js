@@ -9,14 +9,12 @@ const initialState = {
 
 const jobReducer = (state = initialState, action) => {
     if (action.type === JOB_FETCHJOB_SUCCESS) {
-        console.log('masuk sini success')
         return {
             ...state,
             jobs: action.payload,
             isLoading: false
         }
     } else if (action.type === JOB_FETCHJOB_PENDING) {
-        console.log('masuk sini pending')
         return {
             ...state,
             isLoading: action.payload
